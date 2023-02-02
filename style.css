@@ -1,5 +1,13 @@
+/* BOILERPLATE */
 :root {
   --BGcolor: #000000;
+  --darkTxtColor: #111111;
+  --brightTxtColor: #FFFFFF;
+  --accentColor: #FBBA00;
+  --Montserrat: 'Montserrat', sans-serif;
+  --OpenSans: 'Open Sans', sans-serif;
+  --contentSpacing: 3rem;
+  font-size: 0.833333vmax;
 }
 
 html, body {
@@ -11,5 +19,134 @@ html, body {
 body {
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   background-color: var(--BGcolor);
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+  padding: 0;
+  margin: 0;
+}
+
+/* HEADER */
+#header, #footer {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+}
+
+#header * {
+  padding: 0;
+  margin: 0;
+  color: var(--darkTxtColor);
+  font-family: var(--Montserrat);
+  font-size: 3rem;
+  text-align: center;
+}
+
+#Logo {
+  width: 8ch;
+  height: 85%;
+  object-fit: contain;
+}
+
+#datum {
+  width: 15ch;
+  font-weight: 800;
+}
+
+#uhr {
+  width: 8ch;
+  background-color: var(--accentColor);
+}
+
+#zeit {
+  width: 100%;
+  font-weight: 900;
+}
+
+/* MAIN CONTENT */
+#main {
+  width: calc(100% - calc(var(--contentSpacing) * 2));
+  height: 100%;
+  margin: var(--contentSpacing);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--contentSpacing);
+}
+
+/* MAIN CONTENT LEFT */
+#mainLeft {
+  width: 38.2%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--contentSpacing);
+}
+
+#articleIMG {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-image: url("https://source.unsplash.com/random/640x480/?news");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--brightTxtColor);
+  font-family: var(--OpenSans);
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+/* MAIN CONTENT RIGHT */
+#mainRight {
+  width: 61.8%;
+  height: calc(90vh - var(--contentSpacing));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--contentSpacing);
+  color: var(--brightTxtColor);
+  font-family: var(--Montserrat);
+  text-align: left;
+  overflow: hidden;
+}
+
+#headline {
+  font-size: 5rem;
+  font-weight: 900;
+}
+
+#description {
+  font-size: 3rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+}
+
+#qrcode {
+  width: 15vw;
+  aspect-ratio: 1 / 1;
+  float: right;
+  background-image: url("https://www.qrcode-monkey.com/img/default-preview-qr.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
