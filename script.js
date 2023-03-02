@@ -46,6 +46,21 @@ function getXML() {
       console.log(txtForDescr2);
       let remainingTxtFromDescr2 = fillDescriptionAndReturnRest(txtForDescr2, descr2);
       console.log(remainingTxtFromDescr2);
+      // QR CODE
+      let articleURL = items[0].getElementsByTagName('link')[0].childNodes[0].nodeValue;
+      let qrcode = new QRCode(document.getElementById('qrcode'), {
+        text: articleURL,
+        width: 500,
+        height: 500,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.L
+      });
+      // IMAGE
+      let articleImg = document.getElementById('articleIMG');
+      let articleImgUrl = items[0].getElementsByTagName('enclosure')[0].getAttribute('url');
+      console.log(articleImgUrl);
+      articleImg.style.backgroundImage = "url(" + articleImgUrl + ")";
     })
     .catch(console.error);
 }
