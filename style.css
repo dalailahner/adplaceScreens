@@ -137,7 +137,7 @@ h1, h2, h3, h4, h5, h6, p, a {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: var(--contentSpacing);
+  gap: calc(var(--contentSpacing) / 2);
   color: var(--brightTxtColor);
   font-family: var(--Montserrat);
   text-align: left;
@@ -147,6 +147,7 @@ h1, h2, h3, h4, h5, h6, p, a {
 #headline {
   font-size: 5rem;
   font-weight: 900;
+  line-height: 1.1;
 }
 
 #descriptionCont {
@@ -161,11 +162,12 @@ h1, h2, h3, h4, h5, h6, p, a {
 .description {
   font-size: 3rem;
   font-weight: 700;
+  line-height: 1.2;
   overflow: hidden;
 }
 
 #qrcodeCont {
-  min-height: 9vw;
+  min-height: 9vmax;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -191,6 +193,21 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 @media (orientation: portrait) {
+
+  /* HEADER */
+  #header, #footer {
+    justify-content: space-evenly;
+    font-size: 3.5rem;
+  }
+
+  #Logo {
+    width: auto;
+    height: 60%;
+  }
+
+  #datum {
+    width: auto;
+  }
 
   /* MAIN CONTENT */
   #main {
@@ -240,7 +257,7 @@ h1, h2, h3, h4, h5, h6, p, a {
     left: 50%;
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
-    animation: blend 10s linear infinite;
+    animation: blend 10s linear infinite both;
   }
 
   #footer div:nth-child(1) {

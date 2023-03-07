@@ -65,10 +65,17 @@
       <p>@salzburg24</p>
     </div>
     <div>
+      <img src="assets\Salzburg24-Logo-RGB.svg" style="border-radius: 0px;" alt="Salzburg24 Logo">
       <p>SALZBURG24.at</p>
     </div>
   </div>
   <script type="text/javascript">
+    var qrcode = document.getElementById('qrcode');
+    var headline = document.getElementById('headline');
+    var descr1 = document.querySelectorAll('.description')[0];
+    var descr2 = document.querySelectorAll('.description')[1];
+    var articleImg = document.getElementById('articleIMG');
+    var elementsArr = [qrcode, headline, descr1, descr2, articleIMG];
     getDate();
     startClock();
   </script>

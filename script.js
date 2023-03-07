@@ -1,7 +1,27 @@
 // GLOBAL VARIABLES
 var items;
 var xmlIndex = 0;
-var loopDuration = 3000;
+var loopDuration = 10000;
+var qrcode;
+const fadeOut = [{
+    opacity: 1
+  },
+  {
+    opacity: 0
+  },
+];
+const fadeIn = [{
+    opacity: 0
+  },
+  {
+    opacity: 1
+  },
+];
+const animTiming = {
+  duration: 1500,
+  iterations: 1,
+  fill: "forwards"
+};
 
 getXML();
 
@@ -51,25 +71,20 @@ function getXML() {
 
 function loopArticles() {
   setTimeout(() => {
+    elementsArr.forEach(element => element.animate(fadeOut, animTiming));
+  }, (loopDuration - animTiming.duration));
+  setTimeout(() => {
     pasteArticle();
     loopArticles();
   }, loopDuration);
 }
 
 function pasteArticle() {
-  let headline = document.getElementById('headline');
-  let descr1 = document.querySelectorAll('.description')[0];
-  let descr2 = document.querySelectorAll('.description')[1];
-  // HEADLINE
-  headline.innerHTML = items[xmlIndex].getElementsByTagName('title')[0].childNodes[0].nodeValue;
-  // DESCRIPTION
-  let descriptionTxt = items[xmlIndex].getElementsByTagName('description')[0].childNodes[0].nodeValue.split(' ');
-  let txtForDescr2 = fillDescriptionAndReturnRest(descriptionTxt, descr1);
-  let remainingTxtFromDescr2 = fillDescriptionAndReturnRest(txtForDescr2, descr2);
+  // TODO: UTM Parameter beim Link dranhängen
   // QR CODE
-  // TODO: FIX QR CODE GENERATOR
+  qrcode.replaceChildren();
   let articleURL = items[xmlIndex].getElementsByTagName('link')[0].childNodes[0].nodeValue;
-  let qrcode = new QRCode(document.getElementById('qrcode'), {
+  new QRCode(qrcode, {
     text: articleURL,
     width: 500,
     height: 500,
@@ -77,17 +92,25 @@ function pasteArticle() {
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.L
   });
+  // HEADLINE
+  headline.innerHTML = items[xmlIndex].getElementsByTagName('title')[0].childNodes[0].nodeValue;
+  // DESCRIPTION
+  let descriptionTxt = items[xmlIndex].getElementsByTagName('description')[0].childNodes[0].nodeValue.split(' ');
+  let txtForDescr2 = fillDescriptionAndReturnRest(descriptionTxt, descr1, false);
+  let remainingTxtFromDescr2 = fillDescriptionAndReturnRest(txtForDescr2, descr2, true);
   // IMAGE
-  let articleImg = document.getElementById('articleIMG');
   let articleImgUrl = items[xmlIndex].getElementsByTagName('enclosure')[0].getAttribute('url');
   articleImg.style.backgroundImage = "url(" + articleImgUrl + ")";
   xmlIndex++;
   if (xmlIndex == items.length) {
     xmlIndex = 0;
   }
+  elementsArr.forEach(element => element.animate(fadeIn, animTiming));
 }
 
-function fillDescriptionAndReturnRest(txtToFill, elToFill) {
+function fillDescriptionAndReturnRest(txtToFill, elToFill, dots) {
+  elToFill.style.height = "auto";
+  elToFill.style.overflow = "hidden";
   elToFill.innerHTML = txtToFill.join(" ");
   elToFill.style.height = window.getComputedStyle(elToFill).height;
   let baseLineHeight = parseFloat(window.getComputedStyle(elToFill).lineHeight);
@@ -96,6 +119,9 @@ function fillDescriptionAndReturnRest(txtToFill, elToFill) {
   for (let index = txtToFill.length; index > 1; index--) {
     let fillTxt = txtToFill.slice(0, index);
     elToFill.innerHTML = fillTxt.join(" ");
+    if (dots) {
+      elToFill.innerHTML = elToFill.innerHTML + " ...";
+    }
     if (elToFill.scrollHeight < newHeight) {
       let remainingTxt = txtToFill.slice(index, txtToFill.length);
       elToFill.style.overflow = "visible";
