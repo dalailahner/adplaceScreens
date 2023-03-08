@@ -25,15 +25,12 @@
   <div id="main">
     <div id="mainLeft">
       <div id="articleIMG"></div>
-      <div class="links">
-        <div class="socials">
-          <img src="assets\tiktokinv.svg" alt="tiktok">
-          <img src="assets\instagram.svg" alt="instagram">
-          <img src="assets\facebook.svg" alt="facebook">
-          <img src="assets\twitter.svg" alt="twitter">
-          <p>@salzburg24</p>
-        </div>
-        <p>SALZBURG24.at</p>
+      <div id="socials">
+        <img src="assets\tiktokinv.svg" alt="tiktok">
+        <img src="assets\instagram.svg" alt="instagram">
+        <img src="assets\facebook.svg" alt="facebook">
+        <img src="assets\twitter.svg" alt="twitter">
+        <p>@salzburg24</p>
       </div>
     </div>
     <div id="mainRight">
@@ -75,7 +72,8 @@
     var descr1 = document.querySelectorAll('.description')[0];
     var descr2 = document.querySelectorAll('.description')[1];
     var articleImg = document.getElementById('articleIMG');
-    var elementsArr = [qrcode, headline, descr1, descr2, articleIMG];
+    var socials = document.getElementById('socials');
+    var elementsArr = [qrcode, headline, descr1, descr2, articleIMG, socials];
     getDate();
     startClock();
   </script>

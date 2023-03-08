@@ -80,10 +80,10 @@ function loopArticles() {
 }
 
 function pasteArticle() {
-  // TODO: UTM Parameter beim Link dranhängen
   // QR CODE
   qrcode.replaceChildren();
   let articleURL = items[xmlIndex].getElementsByTagName('link')[0].childNodes[0].nodeValue;
+  articleURL = articleURL + "?utm_source=adplace&utm_medium=display&utm_campaign=S24AdplaceScreens";
   new QRCode(qrcode, {
     text: articleURL,
     width: 500,
@@ -109,23 +109,48 @@ function pasteArticle() {
 }
 
 function fillDescriptionAndReturnRest(txtToFill, elToFill, dots) {
-  elToFill.style.height = "auto";
+  elToFill.innerHTML = "";
+  elToFill.style.height = "100%";
   elToFill.style.overflow = "hidden";
-  elToFill.innerHTML = txtToFill.join(" ");
-  elToFill.style.height = window.getComputedStyle(elToFill).height;
   let baseLineHeight = parseFloat(window.getComputedStyle(elToFill).lineHeight);
   let newHeight = parseFloat(elToFill.clientHeight / baseLineHeight * baseLineHeight);
-  elToFill.style.height = "fit-content";
-  for (let index = txtToFill.length; index > 1; index--) {
-    let fillTxt = txtToFill.slice(0, index);
-    elToFill.innerHTML = fillTxt.join(" ");
-    if (dots) {
-      elToFill.innerHTML = elToFill.innerHTML + " ...";
+  if (newHeight > baseLineHeight) {
+    elToFill.style.height = "fit-content";
+    for (let index = txtToFill.length; index > 1; index--) {
+      let fillTxt = txtToFill.slice(0, index);
+      elToFill.innerHTML = fillTxt.join(" ");
+      if (dots) {
+        elToFill.innerHTML = elToFill.innerHTML + " ...";
+      }
+      if (elToFill.scrollHeight < newHeight) {
+        let remainingTxt = txtToFill.slice(index, txtToFill.length);
+        elToFill.style.overflow = "visible";
+        return remainingTxt;
+      }
     }
-    if (elToFill.scrollHeight < newHeight) {
-      let remainingTxt = txtToFill.slice(index, txtToFill.length);
-      elToFill.style.overflow = "visible";
-      return remainingTxt;
-    }
+  } else {
+    elToFill.style.height = 0;
+    return txtToFill;
   }
 }
+
+// function fillDescriptionAndReturnRest(txtToFill, elToFill, dots) {
+//   elToFill.style.height = "auto";
+//   elToFill.style.overflow = "hidden";
+//   elToFill.innerHTML = txtToFill.join(" ");
+//   elToFill.style.height = window.getComputedStyle(elToFill).height;
+//   let newHeight = getNewHeight(elToFill);
+//   elToFill.style.height = "fit-content";
+//   for (let index = txtToFill.length; index > 1; index--) {
+//     let fillTxt = txtToFill.slice(0, index);
+//     elToFill.innerHTML = fillTxt.join(" ");
+//     if (dots) {
+//       elToFill.innerHTML = elToFill.innerHTML + " ...";
+//     }
+//     if (elToFill.scrollHeight < newHeight) {
+//       let remainingTxt = txtToFill.slice(index, txtToFill.length);
+//       elToFill.style.overflow = "visible";
+//       return remainingTxt;
+//     }
+//   }
+// }
