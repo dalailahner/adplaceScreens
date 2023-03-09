@@ -57,7 +57,7 @@ function checkTime(x) { // add zero in front of single digits
 
 // XML FEED
 function getXML() {
-  fetch('https://www.salzburg24.at/newsletter/busdisplay/busxml/xml')
+  fetch('https://www.salzburg24.at/newsletter/busdisplay/busxml/xmlfull')
     .then((response) => response.text())
     .then((data) => {
       const parser = new DOMParser();
@@ -116,14 +116,14 @@ function fillDescriptionAndReturnRest(txtToFill, elToFill, dots) {
   let newHeight = parseFloat(elToFill.clientHeight / baseLineHeight * baseLineHeight);
   if (newHeight > baseLineHeight) {
     elToFill.style.height = "fit-content";
-    for (let index = txtToFill.length; index > 1; index--) {
+    for (let index = txtToFill.length; index > 0; index--) {
       let fillTxt = txtToFill.slice(0, index);
       elToFill.innerHTML = fillTxt.join(" ");
       if (dots) {
         elToFill.innerHTML = elToFill.innerHTML + " ...";
       }
       if (elToFill.scrollHeight < newHeight) {
-        let remainingTxt = txtToFill.slice(index, txtToFill.length);
+        let remainingTxt = txtToFill.slice(index);
         elToFill.style.overflow = "visible";
         return remainingTxt;
       }
@@ -133,24 +133,3 @@ function fillDescriptionAndReturnRest(txtToFill, elToFill, dots) {
     return txtToFill;
   }
 }
-
-// function fillDescriptionAndReturnRest(txtToFill, elToFill, dots) {
-//   elToFill.style.height = "auto";
-//   elToFill.style.overflow = "hidden";
-//   elToFill.innerHTML = txtToFill.join(" ");
-//   elToFill.style.height = window.getComputedStyle(elToFill).height;
-//   let newHeight = getNewHeight(elToFill);
-//   elToFill.style.height = "fit-content";
-//   for (let index = txtToFill.length; index > 1; index--) {
-//     let fillTxt = txtToFill.slice(0, index);
-//     elToFill.innerHTML = fillTxt.join(" ");
-//     if (dots) {
-//       elToFill.innerHTML = elToFill.innerHTML + " ...";
-//     }
-//     if (elToFill.scrollHeight < newHeight) {
-//       let remainingTxt = txtToFill.slice(index, txtToFill.length);
-//       elToFill.style.overflow = "visible";
-//       return remainingTxt;
-//     }
-//   }
-// }

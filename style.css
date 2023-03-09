@@ -11,6 +11,7 @@
 }
 
 html, body, body * {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -19,9 +20,18 @@ html, body, body * {
 body {
   width: 100vw;
   height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
   background-color: var(--BGcolor);
 }
@@ -38,9 +48,18 @@ h1, h2, h3, h4, h5, h6, p, a {
   width: 100%;
   height: 10vh;
   position: static;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   color: var(--darkTxtColor);
   font-family: var(--Montserrat);
@@ -52,6 +71,7 @@ h1, h2, h3, h4, h5, h6, p, a {
 #Logo {
   width: 8ch;
   height: 75%;
+  -o-object-fit: contain;
   object-fit: contain;
 }
 
@@ -75,9 +95,18 @@ h1, h2, h3, h4, h5, h6, p, a {
   width: 100%;
   height: 90vh;
   padding: var(--contentSpacing);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   gap: var(--contentSpacing);
 }
@@ -86,9 +115,18 @@ h1, h2, h3, h4, h5, h6, p, a {
 #mainLeft {
   width: 38.2%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
   gap: var(--contentSpacing);
 }
@@ -104,10 +142,21 @@ h1, h2, h3, h4, h5, h6, p, a {
 
 #socials {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   color: var(--brightTxtColor);
   font-family: var(--OpenSans);
@@ -125,9 +174,18 @@ h1, h2, h3, h4, h5, h6, p, a {
 #mainRight {
   width: 61.8%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   gap: calc(var(--contentSpacing) / 2);
   color: var(--brightTxtColor);
@@ -145,8 +203,15 @@ h1, h2, h3, h4, h5, h6, p, a {
 #descriptionCont {
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
   overflow: hidden;
 }
@@ -161,16 +226,27 @@ h1, h2, h3, h4, h5, h6, p, a {
 
 #qrcodeCont {
   min-height: 12vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
 }
 
 #qrcode {
   width: 12vmax;
   height: 12vmax;
+  -ms-flex-item-align: end;
   align-self: flex-end;
+  -ms-flex-negative: 0;
   flex-shrink: 0;
   border: 0.3vw solid #fff;
   background-color: #fff;
@@ -190,6 +266,8 @@ h1, h2, h3, h4, h5, h6, p, a {
 
   /* HEADER */
   #header, #footer {
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
     font-size: 3.5rem;
   }
@@ -206,6 +284,9 @@ h1, h2, h3, h4, h5, h6, p, a {
   /* MAIN CONTENT */
   #main {
     height: 80vh;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
   }
 
@@ -223,11 +304,15 @@ h1, h2, h3, h4, h5, h6, p, a {
   #mainRight {
     width: 100%;
     height: auto;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
     flex-grow: 1;
   }
 
   /* FOOTER */
   #footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     position: absolute;
     left: 0;
@@ -242,36 +327,74 @@ h1, h2, h3, h4, h5, h6, p, a {
   #footer div {
     width: 100%;
     height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     gap: 1.5rem;
     position: absolute;
     left: 50%;
     top: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
     transform: translate3d(-50%, -50%, 0);
+    -webkit-animation: blend 10s linear infinite both;
     animation: blend 10s linear infinite both;
   }
 
   #footer div:nth-child(1) {
+    -webkit-animation-delay: 0s;
     animation-delay: 0s;
   }
 
   #footer div:nth-child(2) {
+    -webkit-animation-delay: 2s;
     animation-delay: 2s;
   }
 
   #footer div:nth-child(3) {
+    -webkit-animation-delay: 4s;
     animation-delay: 4s;
   }
 
   #footer div:nth-child(4) {
+    -webkit-animation-delay: 6s;
     animation-delay: 6s;
   }
 
   #footer div:nth-child(5) {
+    -webkit-animation-delay: 8s;
     animation-delay: 8s;
+  }
+}
+
+@-webkit-keyframes blend {
+  0% {
+    opacity: 0;
+  }
+
+  2% {
+    opacity: 1;
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
 
